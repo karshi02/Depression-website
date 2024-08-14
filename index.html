@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบทดสอบภาวะซึมเศร้า PHQ-9</title>
+    <link rel="stylesheet" href="styles3.css">
+    <script src="scripts.js"></script>
+    <style>
+        /* จัดกึ่งกลางภาพ */
+        .image-container img {
+            width: 35%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* จัดกึ่งกลาง h3 */
+        h3 {
+            text-align: center;
+        }
+
+        /* จัดแต่งคำถามแต่ละข้อ */
+        .question {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .question input[type="range"] {
+            width: 80%;
+            margin-bottom: 10px;
+        }
+
+        .slider-value {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #333;
+            margin-left: 15px;
+            vertical-align: middle;
+        }
+
+        /* จัดการปุ่ม */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .button-group .cancel-btn {
+            background-color: #ff6b6b;
+            color: white;
+        }
+
+        .button-group .submit {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .button-group button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Image at the top center -->
+        <div class="image-container">
+            <img src="Screenshot_2024-08-13_172740-removebg-preview.png" alt="PHQ-9 Assessment Image">
+        </div>
+
+        <h1>แบบทดสอบภาวะซึมเศร้า PHQ-9</h1>
+        <h3>มหาวิทยาลัยราชภัฏมหาสารคาม</h3>
+        <p class="instruction">โปรดใส่คะแนนให้ตรงกับคำตอบของท่าน</p>
+        <p class="scoring">เกณฑ์ให้คะแนน : <strong>ไม่เลย = 0, มีบางวันหรือไม่บ่อย = 1, มีค่อนข้างบ่อย = 2, มีเกือบทุกวัน = 3</strong></p>
+        <p class="timeframe">ในช่วง 2 สัปดาห์ ที่ผ่านมา ท่านมีอาการดังต่อไปนี้บ่อยแค่ไหน?</p>
+        
+        <form id="phq9-form" action="connect.php" method="post">
+            <div class="question">
+                <label>1. เบื่อ ทำอะไร ๆ ก็ไม่เพลิดเพลิน</label>
+                <input type="range" name="q1" min="0" max="3" value="0" oninput="updateSliderColor(this)">
+                <output class="slider-value">0</output>
+            </div>
+            <div class="question">
+                <label>2. ไม่สบายใจ ซึมเศร้า หรือท้อแท้</label>
+                <input type="range" name="q2" min="0" max="3" value="0" oninput="updateSliderColor(this)">
+                <output class="slider-value">0</output>
+            </div>
+            <div class="question">
+                <label>3. หลับยาก หรือหลับ ๆ ตื่น ๆ หรือหลับมากไป</label>
+                <input type="range" name="q3" min="0" max="3" value="0" oninput="updateSliderColor(this)">
+                <output class="slider-value">0</output>
+            </div>
+            <div class="question">
+                <label>4. เหนื่อยง่าย หรือไม่ค่อยมีแรง</label>
+                <input type="range" name="q4" min="0" max="3" value="0" oninput="updateSliderColor(this)">
+                <output class="slider-value">0</output>
+            </div>
+            <div class="question">
+                <label>5. เบื่ออาหาร หรือกินมากเกินไป</label>
+                <input type="range" name="q5" min="0" max="3" value="0" oninput="updateSliderColor(this)">
+                <output class="slider-value">0</output>
+            </div>
+            <div class="question">
+                <label>6. รู้สึกไม่ดีกับตัวเอง คิดว่าตัวเองล้มเหลว หรือเป็นคนทำให้ตัวเอง หรือครอบครัวผิดหวัง</label>
+                <input type="range" name="q6" min="0" max="3" value="0" oninput="updateSliderColor(this)">
+                <output class="slider-value">0</output>
+            </div>
+            <div class="question">
+                <label>7. สมาธิไม่ดีเวลาทำอะไร เช่น ดูโทรทัศน์ ฟังวิทยุ หรือทำงานที่ต้องใช้ความตั้งใจ</label>
+                <input type="range" name="q7" min="0" max="3" value="0" oninput="updateSliderColor(this)">
+                <output class="slider-value">0</output>
+            </div>
+            <div class="question">
+                <label>8. พูดหรือทำอะไรช้าจนคนอื่นมองเห็น หรือกระสับกระส่ายจนท่านอยู่ไม่นิ่งเหมือนเคย</label>
+                <input type="range" name="q8" min="0" max="3" value="0" oninput="updateSliderColor(this)">
+                <output class="slider-value">0</output>
+            </div>
+            <div class="question">
+                <label>9. คิดทำร้ายตนเอง หรือคิดว่าถ้าตาย ๆ ไปเสียคงจะดี</label>
+                <input type="range" name="q9" min="0" max="3" value="0" oninput="updateSliderColor(this)">
+                <output class="slider-value">0</output>
+            </div>
+            <div class="button-group">
+                <button type="reset" class="cancel-btn">ยกเลิก</button>
+                <button type="submit" class="submit">ตกลง</button>
+            </div>
+        </form>
+
+        <div id="result"></div>
+
+        <h2>หมายเหตุ</h2>
+        <p class="note">แบบประเมินนี้พัฒนาจาก แบบสอบถามสุขภาพผู้ป่วย (Patient Health Questionnaire: PHQ-9) นาย วิทยา โพธิ์เกตุ และมหาวิทยาลัยราชภัฏมหาสารคาม การประเมินนี้เป็นการประเมินระดับภาวะซึมเศร้าในขั้นต้น ส่วนการวินิจฉัยนั้นจำเป็นต้องพบแพทย์เพื่อซักประวัติ ตรวจร่างกาย รวมถึงส่งตรวจเพิ่มเติมที่จำเป็น เพื่อยืนยันการวินิจฉัยที่แน่นอน รวมถึงเพื่อแยกโรคหรือภาวะอื่น ๆ เนื่องจากภาวะซึมเศร้าเป็นจากสาเหตุต่าง ๆ ได้มากมาย เช่น โรคทางจิตเวชอื่นที่มีอาการซึมเศร้าร่วมด้วย โรคทางร่างกายเช่นโรคไทรอยด์ โรคแพ้ภูมิตัวเอง หรือเป็นจากยาหรือสารต่าง ๆ</p>
+        <p class="note">ผลการประเมินและคำแนะนำที่ได้รับจากโปรแกรมนี้จึงไม่สามารถใช้แทนการตัดสินใจของแพทย์ได้ การตรวจรักษาเพิ่มเติมหรือการให้ยารักษาขึ้นอยู่กับดุลยพินิจของแพทย์และการปรึกษากันระหว่างแพทย์และตัวท่าน</p>
+    </div>
+</body>
+</html>
